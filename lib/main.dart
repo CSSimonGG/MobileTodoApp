@@ -1,66 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/pages/first_page.dart';
+import 'package:todo_app/pages/home_page.dart';
+import 'package:todo_app/pages/profile_page.dart';
+import 'package:todo_app/pages/settings_page.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int num = 0;
-
-  void userTapped() {
-    setState(() {
-      num++;
-      print(num);
-    });
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          title: Text("Test"),
-          backgroundColor: Colors.yellow,
-          leading: Icon(Icons.menu),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.logout),
-            )
-          ],
-        ),
-        body: Center(
-          child: GestureDetector(
-            onTap: userTapped,
-            child: Container(
-              height: 300,
-              width: 300,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(150),
-              ),
-              child: Center(
-                child: Text(
-                  num.toString(),
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+      home: FirstPage(),
+      routes: {
+        '/firstpage':(context) => FirstPage(),
+        '/homepage':(context) => HomePage(),
+        '/settingspage':(context) => SettingsPage(),
+        '/profilepage':(context) => ProfilePage(),
+      },
     );
   }
 }
